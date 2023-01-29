@@ -1,7 +1,7 @@
 package chap_07_Class;
 
 public class _01_Class1 {
-//  타입 필드명
+  //  타입 필드명
   String name;
   int number;
 
