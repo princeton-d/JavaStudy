@@ -1,10 +1,25 @@
 package chap_07_Class;
 
 public class _01_Class1 {
+//  타입 필드명
+  String name;
+  int number;
+
   public static void main(String[] args) {
 //    메모리에 만들어진 클레스 객체를 인스턴스라고 한다.
     _01_Class1 car1 = new _01_Class1();
+    car1.name = "소방차";
+    car1.number = 1234;
+
     _01_Class1 car2 = new _01_Class1();
+    car2.name = "구급차";
+    car2.number = 1111;
+
+    System.out.println(car1.name);
+    System.out.println(car1.number);
+
+    System.out.println(car2.name);
+    System.out.println(car2.number);
 
 //    참조형 타입 String
     String str1 = "hello world"; // String 클레스는 new 를 이용하지 않고도 생성을 할 수 있다.
