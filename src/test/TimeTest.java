@@ -1,5 +1,9 @@
 package test;
 
+class Times extends Time {
+
+}
+
 class Time {
   private int hour;
   private int minute;
@@ -24,9 +28,15 @@ class Time {
 public class TimeTest {
   public static void main(String[] args) {
     Time t = new Time();
+    Times tt = new Times();
     t.setHour(21);
     System.out.println(t.getHour());
     t.setHour(100);
     System.out.println(t.getHour());
+    if (t instanceof Times) {
+      System.out.println("true");
+    } else {
+      System.out.println("false");
+    }
   }
 }
