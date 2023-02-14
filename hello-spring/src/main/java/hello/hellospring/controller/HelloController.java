@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
   @GetMapping("hello")
   public String hello(Model model) {
-    model.addAttribute("data", "hello!!");
-    return "hello";
+    model.addAttribute("data", "hello!!!");
+    return "hello"; // 데이터를 resources.templates 폴더 안에 있는 hello 라는 이름의 html 로 넘겨줌
   }
 
   @GetMapping("hello-mvc")
