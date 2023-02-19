@@ -21,7 +21,7 @@ public class HelloController {
   }
 
   @GetMapping("hello-string")
-  @ResponseBody // http 에 body 부분에 이 데이터를 직접 넣어주겠다는 뜻
+  @ResponseBody // http 에 body 부분에 이 데이터를 직접 반환(viewResolver 대신에 HttpMessageConverter 가 동자
   public String helloString(@RequestParam("name") String name) {
     return name;
   }
