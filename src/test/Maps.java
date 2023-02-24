@@ -42,8 +42,7 @@ public class Maps {
     s.push(2);
     s.push(1);
     s.pop();
-    System.out.println(s.peek());
-    s.add(3);
+    s.pop();
     System.out.println(s.peek());
   }
 }
