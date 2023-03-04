@@ -82,6 +82,8 @@ public class Maps {
     String[] strArr = {"one", "two", "three", "fore", "five"};
     for (String i : strArr) {
       System.out.println(i);
+
+
     }
   }
 
