@@ -44,5 +44,45 @@ public class Maps {
     s.pop();
     s.pop();
     System.out.println(s.peek());
+
+    Map<Integer, String> store = new HashMap<>();
+    Integer num = 0;
+    store.put(++num, "one");
+    store.put(++num, "two");
+    store.put(++num, "three");
+    store.put(++num, "fore");
+    store.put(++num, "five");
+    store.put(++num, "one");
+    store.put(++num, "one");
+    store.put(++num, "one");
+
+    int number1 = 1;
+    int number2 = 1;
+    int number3 = 1;
+
+    ++number1;
+    System.out.println(number1);
+    System.out.println(number2);
+    System.out.println(number3);
+
+    int[] intArr = new int[10];
+    for (int i = 0; i < intArr.length; i++) {
+      intArr[i] = i + 1;
+    }
+
+    int[] bigIntArr = new int[100];
+    for (int i = 0; i < bigIntArr.length; i++) {
+      bigIntArr[i] = i;
+    }
+
+    System.arraycopy(intArr, 0, bigIntArr, 0, intArr.length);
+
+    System.out.println(bigIntArr[1]);
+
+    String[] strArr = {"one", "two", "three", "fore", "five"};
+    for (String i : strArr) {
+      System.out.println(i);
+    }
   }
+
 }
