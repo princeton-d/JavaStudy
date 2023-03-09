@@ -79,7 +79,7 @@ public class Maps {
 
     System.out.println(bigIntArr[1]);
 
-    String[] strArr = {"one", "two", "three", "fore", "five"};
+    String[] strArr = {"one", "two", "three", "fore", "five", "six"};
     for (String i : strArr) {
       System.out.println(i);
 
