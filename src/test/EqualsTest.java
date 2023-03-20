@@ -16,5 +16,6 @@ public class EqualsTest {
     test2 = test1;
 
     System.out.println(test1.equals(test2));
+    // equals 는 값을 주소값을 비교해서 일치유무를 판단한다.
   }
 }
