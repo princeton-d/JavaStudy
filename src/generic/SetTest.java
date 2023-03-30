@@ -15,16 +15,16 @@ public class SetTest {
         values.add(1);
         values.add(3);
     
-        Set<Integer> duplicate = findDuplicate(values);
+        List<Integer> duplicate = findDuplicate(values);
     
         System.out.println(duplicate);
     }
     
-    public static Set<Integer> findDuplicate(List<Integer> values) {
+    public static List<Integer> findDuplicate(List<Integer> values) {
         Set<Integer> seen = new HashSet<>();
     
         return values.stream()
             .filter(e -> !seen.add(e))
-            .collect(Collectors.toSet());
+            .collect(Collectors.toList());
     }
 }
