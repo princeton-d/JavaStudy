@@ -1,0 +1,18 @@
+
+v
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(éãåĞ8‰Îİ»ñ0
+{
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(û‚±ÿÿÿÿÿ8‰Îİ»ñ0
+v
+java:S2293A"YReplace the type specification in this constructor call with the diamond operator ("<>").(Á›ŞÍ8‰Îİ»ñ0
+9
+java:S1643("Use a StringBuilder instead.(¬ìå¯8‰Îİ»ñ0
+W
+java:S1161":Add the "@Override" annotation above this method signature(Á»›ê8Îİ»ñ0
+W
+java:S1161":Add the "@Override" annotation above this method signature(Á»›ê8Îİ»ñ0
+W
+java:S1118#":Add a private constructor to hide the implicit public one.(Ÿ°Æ§8Îİ»ñ0
+Z	java:S1067"9Replace this use of System.out or System.err by a logger.(‚¦øÿÿÿÿ8‘Îİ»ñ0
+U	java:S1068"9Replace this use of System.out or System.err by a logger.(™ŒØä8‘Îİ»ñ0
+]	java:S125@"<This block of commented-out lines of code should be removed.(’âÂªøÿÿÿÿ8’Îİ»ñ0
