@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.domain.calculator.CalculatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-04-18T15:55:09" hostname="172.20.nate.com" time="0.129">
+  <properties/>
+  <testcase name="[1] 1, +, 2, 3" classname="org.example.domain.calculator.CalculatorTest" time="0.099"/>
+  <testcase name="[2] 1, -, 2, -1" classname="org.example.domain.calculator.CalculatorTest" time="0.003"/>
+  <testcase name="[3] 4, *, 2, 8" classname="org.example.domain.calculator.CalculatorTest" time="0.003"/>
+  <testcase name="[4] 4, /, 2, 2" classname="org.example.domain.calculator.CalculatorTest" time="0.003"/>
+  <testcase name="나눗셈에서 0을 나누는 경우 IllegalArgument 예외를 발생시킨다." classname="org.example.domain.calculator.CalculatorTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

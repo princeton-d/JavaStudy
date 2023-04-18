@@ -5,9 +5,9 @@ L
 src/enum_test/EnumTest2.java,d/7/d77ed4b86e07aa602154a9ea72b4f951143a7a49
 L
 src/generic/FruitBoxEx3.java,6/9/69c9d874c7c78251a0b70aead345278ea64df839
-H
-src/generic/SetTest.java,6/e/6e928f07657755c4bd1b3eaea816fe4c5f7bccd3
 K
 src/enum_test/EnumTest.java,0/9/0971372a4fc018ea00ba0889f4ad8e3667835503
+H
+src/generic/SetTest.java,6/e/6e928f07657755c4bd1b3eaea816fe4c5f7bccd3
 =
 src/main.java,5/7/57994ff8877cf5528154a51b34a36e33fea58d0a

@@ -1,22 +1,7 @@
 
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8ƒØý×ø0
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8ú¢¬¦ù0
 7
-java:S1220""Move this file to a named package.8„Øý×ø0
+java:S1220""Move this file to a named package.8ú¢¬¦ù0
 i
-java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8„Øý×ø0
-T
-java:S2589."7Remove this expression which always evaluates to "true"(³É©ð8âäþ×ø0
-X
-java:S1854,"6Remove this useless assignment to local variable "id".(À¶Â´ýÿÿÿÿ8ääþ×ø0
-W	java:S125"<This block of commented-out lines of code should be removed.(£…ÐT8Øý×ø0
-]	java:S125"<This block of commented-out lines of code should be removed.(æ´‘Ñúÿÿÿÿ8Øý×ø0
-X	java:S125"<This block of commented-out lines of code should be removed.(ŽÛÇõ8Øý×ø0
-X	java:S125"<This block of commented-out lines of code should be removed.(ƒ—ÿ8Øý×ø0
-]	java:S125"<This block of commented-out lines of code should be removed.(°Ÿðýÿÿÿÿ8Øý×ø0
-]	java:S125 "<This block of commented-out lines of code should be removed.(°Ÿðýÿÿÿÿ8Øý×ø0
-I
-java:S1481,"'Remove this unused "id" local variable.(À¶Â´ýÿÿÿÿ8åäþ×ø0
-D
-java:S1125."'Remove the unnecessary boolean literal.(³É©ð8åäþ×ø0
-U	java:S106/"9Replace this use of System.out or System.err by a logger.(½‡±³8‘Øý×ø0
-Z	java:S1061"9Replace this use of System.out or System.err by a logger.(ÓŠöýÿÿÿÿ8‘Øý×ø0
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8û¢¬¦ù0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ü¿çþ8‚£¬¦ù0
