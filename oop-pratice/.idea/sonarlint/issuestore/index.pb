@@ -19,3 +19,5 @@ S
 0src/main/java/org/example/PasswordValidator.java,0/5/05e5843a87cd07d3893f4af8ec0e056d67b292b4
 d
 4src/test/java/org/example/PasswordValidatorTest.java,e/2/e229c38ec0217ea690e86b4b838ef3f53e584bc6
+b
+2src/test/java/org/example/GradeCalculatorTest.java,6/4/643023187ce2ff8b1a60be3ac99bafd908b65fa0

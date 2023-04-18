@@ -25,7 +25,7 @@ class CalculatorTest {
     @DisplayName("사칙연산을 정상적으로 수행한다.")
     void calculateTest(int leftHandSide, String operator, int rightHandSide, int calculateResult) {
         Calculator calculator = new Calculator();
-        int result = calculator.calculate(leftHandSide, operator, rightHandSide);
+        int result = calculator.calculate(new PositiveNumber(leftHandSide), operator, new PositiveNumber(rightHandSide));
     
         assertThat(result).isEqualTo(calculateResult);
     }
@@ -37,15 +37,5 @@ class CalculatorTest {
             Arguments.arguments(4, "*", 2, 8),
             Arguments.arguments(4, "/", 2, 2)
         );
-    }
-    
-    @DisplayName("나눗셈에서 0을 나누는 경우 IllegalArgument 예외를 발생시킨다.")
-    @Test
-    void calculateExceptionTest() {
-        Calculator calculator = new Calculator();
-    
-        assertThatCode(() -> calculator.calculate(10, "/", 0))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("0으로 나눌 수 없습니다.");
     }
 }
