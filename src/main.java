@@ -1,8 +1,14 @@
 public class main {
     public static void main(String[] args) {
-            String[] members = {"최은지", "김동현", "김주현"};
-            members[1] = "선주";
-        
-            System.out.println(members[1]);
+        Calculator c1 = new Calculator(); // 인스턴스 객체
+    
+        c1.setOprands(10, 20);
+        c1.sum();
+        c1.avg();
+    
+        Calculator c2 = new Calculator();
+        c2.setOprands(30, 50);
+        c2.sum();
+        c2.avg();
     }
 }

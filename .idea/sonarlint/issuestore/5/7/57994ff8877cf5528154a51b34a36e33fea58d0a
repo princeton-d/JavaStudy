@@ -1,7 +1,6 @@
 
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8ú¢¬¦ù0
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8İÿÊèù0
 7
-java:S1220""Move this file to a named package.8ú¢¬¦ù0
+java:S1220""Move this file to a named package.8ŞÿÊèù0
 i
-java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8û¢¬¦ù0
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ü¿çş8‚£¬¦ù0
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8¤ÏÔèù0

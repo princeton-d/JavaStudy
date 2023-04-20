@@ -1,0 +1,6 @@
+
+^
+java:S4973#"<Strings and Boxed types should be compared using "equals()".(¬øÿÿÿÿÿ8Âµ«ù0
+E
+java:S1481 "(Remove this unused "dos" local variable.(ÇÇÇç8Ïµ«ù0
+Z	java:S106$"9Replace this use of System.out or System.err by a logger.(ñ—¸½úÿÿÿÿ8÷ß«ù0
