@@ -1,9 +1,0 @@
-
-7
-java:S1220""Move this file to a named package.8öÌèù0
-w
-java:S3008"ZRename this field "static_variable" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şö§8şÌèù0
-@
-java:S1659"#Declare "right" on a separate line.(’¿¡8†Ìèù0
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(â‰ ûÿÿÿÿ8Ìèù0
-U	java:S106"9Replace this use of System.out or System.err by a logger.(½²øÛ8Ìèù0
