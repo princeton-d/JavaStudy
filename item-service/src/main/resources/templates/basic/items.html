@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <a href="item.html"
-                       th:href="@{/basic/items/{itemId}(itemId=${item.id})}"
+                       th:href="@{|/basic/items/${item.id}|}"
                        th:text="${item.itemName}">상품명
                     </a>
                 </td>
