@@ -28,7 +28,7 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
     @Override
     public Item save(Item item) {
-        String sql = "insert into item(item_name, price, quantity) values(?,?,?)";
+        String sql = "insert into item (item_name, price, quantity) values(?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         template.update(connection -> {
@@ -74,7 +74,7 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
         String itemName = cond.getItemName();
         Integer maxPrice = cond.getMaxPrice();
 
-        String sql = "select id, item_name, price, quantity from item where id = ?";
+        String sql = "select id, item_name, price, quantity from item";
 
         // 동적 쿼리
         if (StringUtils.hasText(itemName) || maxPrice != null) {
