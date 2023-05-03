@@ -9,7 +9,7 @@ K
 src/enum_test/EnumTest.java,0/9/0971372a4fc018ea00ba0889f4ad8e3667835503
 H
 src/generic/SetTest.java,6/e/6e928f07657755c4bd1b3eaea816fe4c5f7bccd3
-C
-src/Calculator.java,f/9/f95cb5c0fd95502bf34d6874131d97605e9197f6
 =
 src/main.java,5/7/57994ff8877cf5528154a51b34a36e33fea58d0a
+C
+src/Calculator.java,f/9/f95cb5c0fd95502bf34d6874131d97605e9197f6
