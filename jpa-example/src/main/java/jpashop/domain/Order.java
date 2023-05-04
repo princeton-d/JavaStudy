@@ -7,10 +7,12 @@ import java.time.LocalDateTime;
 @Table(name = "ORDERS")
 public class Order {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @Column(name = "ORDER_DATE")
