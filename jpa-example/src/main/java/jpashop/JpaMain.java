@@ -19,24 +19,6 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setName("memberA");
-            em.persist(member);
-
-            Order order = new Order();
-            order.setMember(member);
-            order.setStatus(OrderStatus.ORDER);
-            em.persist(order);
-
-            em.flush();
-            em.clear();
-
-            Order findOrder = em.find(Order.class, order.getId());
-            List<Order> orders = findOrder.getMember().getOrders();
-
-            for (Order o : orders) {
-                System.out.println("o.getId() = " + o.getId());
-            }
 
             tx.commit();
         } catch (Exception e) {
