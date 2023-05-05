@@ -1,9 +1,9 @@
 
 7
-java:S1220""Move this file to a named package.8φΜθω0
+java:S1220""Move this file to a named package.8Χ»―δώ0
 w
-java:S3008"ZRename this field "static_variable" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ήφ§8ώΜθω0
+java:S3008"ZRename this field "static_variable" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ήφ§8γ»―δώ0
 @
-java:S1659"#Declare "right" on a separate line.(’Ώ΅8†Μθω0
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(β‰ ϋÿÿÿÿ8Μθω0
-U	java:S106"9Replace this use of System.out or System.err by a logger.(½²ψΫ8Μθω0
+java:S1659"#Declare "right" on a separate line.(’Ώ΅8δ»―δώ0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(β‰ ϋÿÿÿÿ8ξ»―δώ0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(½²ψΫ8σ»―δώ0
