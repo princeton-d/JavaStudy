@@ -18,13 +18,18 @@ public class Order {
     private Member member;
 
     @OneToMany(mappedBy = "order")
-    List<Item> orderItems = new ArrayList<>();
+    List<OrderItem> orderItems = new ArrayList<>();
 
     @Column(name = "ORDER_DATE")
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     public Long getId() {
         return id;
