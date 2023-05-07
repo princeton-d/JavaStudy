@@ -5,44 +5,22 @@ import java.util.stream.Stream;
 public class main {
     public static void main(String[] args) {
 
-        System.out.println(solution(580000));
-    }
-    public static int solution(int price) {
-        int answer = 0;
+        int[] numbers = {0, 31, 24, 28, 39, 37};
+        int firstNumber = 39;
+        int secondNumber = 37;
 
-        if(100000<=price){
-            answer = (int)(price * 0.95);
+        for (int i = 0; i < numbers.length; i++) {
+            //비교하려는 숫자가 가장 큰 숫자일때
+            if (numbers[i] > firstNumber) {
+                secondNumber = firstNumber;
+                firstNumber = numbers[i];
+            }
+            //비교하려는 숫자가 2번째로 큰 숫자일때
+            if (secondNumber < numbers[i] && numbers[i] < firstNumber){
+                secondNumber = numbers[i];
+            }
         }
 
-        if(300000<=price){
-            answer = (int)(price * 0.90);
-        }
-
-        if(500000<=price){
-            answer = (int)(price * 0.80);
-        }
-
-        if (price < 100000) {
-            answer = price;
-        }
-        return answer;
-    }
-}
-
-class Solution {
-    public int solution(int price) {
-        int answer = 0;
-        if(100000<=price){
-            answer = (int)(price * 0.95);
-        }
-        else if(300000<=price){
-            answer = (int)(price * 0.90);
-        }
-        else if(500000<=price){
-            answer = (int)(price * 0.80);
-        } else {
-            answer = price;
-        }
-        return answer;
+        System.out.println(firstNumber * secondNumber);;
     }
 }
