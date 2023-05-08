@@ -13,7 +13,8 @@ public class Game {
         final AnswerNumber answerNumber = AnswerNumber.getInstance();
 
         outputView.printStartMessage();
-        int inputNumber = inputView.enterAnswerNumber(outputView);
+        int userNumber = inputView.enterAnswerNumber(outputView);
+
 
 
     }
