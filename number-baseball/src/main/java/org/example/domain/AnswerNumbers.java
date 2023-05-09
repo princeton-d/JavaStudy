@@ -2,27 +2,22 @@ package org.example.domain;
 
 import java.util.*;
 
-public class AnswerNumber {
+public class AnswerNumbers {
 
-    private static final AnswerNumber INSTANCE = new AnswerNumber();
     private final int MAX_NUMBER = 9;
 
-    private int firstNumber;
-    private int centerNumber;
-    private int lastNumber;
+    private final int firstNumber;
+    private final int centerNumber;
+    private final int lastNumber;
 
-    private AnswerNumber() {
-        Iterator<Integer> numbers = answerNumberBuild();
+    public AnswerNumbers() {
+        Iterator<Integer> numbers = NumberBuild();
         this.firstNumber = numbers.next();
         this.centerNumber = numbers.next();
         this.lastNumber = numbers.next();
     }
 
-    public static AnswerNumber getInstance() {
-        return INSTANCE;
-    }
-
-    private Iterator<Integer> answerNumberBuild() {
+    private Iterator<Integer> NumberBuild() {
         List<Integer> numbers = new ArrayList<>();
 
         while (numbers.size() < 3) {
@@ -51,4 +46,5 @@ public class AnswerNumber {
     public int getLastNumber() {
         return lastNumber;
     }
+
 }

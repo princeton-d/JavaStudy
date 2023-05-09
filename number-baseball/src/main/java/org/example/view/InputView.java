@@ -16,6 +16,19 @@ public class InputView {
         return nextInteger();
     }
 
+    public int nextStep(OutputView outputView, boolean isCorrectAnswer) {
+        if (isCorrectAnswer) {
+            String resultInput = scanner.nextLine();
+            Validate.resultInputFormat(resultInput);
+
+            return Integer.parseInt(resultInput);
+        }
+
+        outputView.printEnterAnswerGuid();
+
+        return nextInteger();
+    }
+
     private int nextInteger() {
         String inputValue = scanner.nextLine();
         Validate.numberFormat(inputValue);

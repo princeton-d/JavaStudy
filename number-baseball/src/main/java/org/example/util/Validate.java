@@ -34,4 +34,19 @@ public class Validate {
         }
     }
 
+    public static void resultInputFormat(String resultInput) {
+        try {
+            int intResultInput = Integer.parseInt(resultInput);
+            resultInputNumberSize(intResultInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+        }
+    }
+
+    private static void resultInputNumberSize(int resultInput) {
+        if (resultInput != 1 && resultInput != 2) {
+            throw new IllegalArgumentException("다시 시작하려면 1, 종료하려면 2를 입력해야합니다.");
+        }
+    }
+
 }

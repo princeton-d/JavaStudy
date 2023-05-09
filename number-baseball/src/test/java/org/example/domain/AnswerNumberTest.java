@@ -1,11 +1,9 @@
 package org.example.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AnswerNumberTest {
 
@@ -13,7 +11,7 @@ class AnswerNumberTest {
     @DisplayName("정답 숫자는 모두 다른 숫자여야한다.")
     public void 정답_숫자_중복_테스트() throws Exception {
         //given
-        AnswerNumber answerNumber = AnswerNumber.getInstance();
+        AnswerNumbers answerNumber = new AnswerNumbers();
 
         //when
         int firstNumber = answerNumber.getFirstNumber();
