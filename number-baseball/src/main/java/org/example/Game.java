@@ -9,33 +9,37 @@ public class Game {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final ResultCheck resultCheck = new ResultCheck();
-    private boolean cycle = true;
+    private final int RESTART_NUMBER = 1;
+    private final int END_NUMBER = 2;
+    private boolean isCycle = true;
 
     public void startGame(boolean isRestart) {
 
         AnswerNumbers answerNumber = new AnswerNumbers();
 
         outputView.printStartMessage(isRestart);
-        int userNumbers = inputView.enterAnswerNumber(outputView);
 
-        String resultMessage = resultCheck.numberCheck(answerNumber, userNumbers);
-        outputView.printResultMessage(resultMessage);
+        while (isCycle) {
+            int userNumbers = inputView.enterAnswerNumber(outputView);
 
-        boolean isCorrectAnswer = outputView.isCorrectAnswer(resultMessage);
+            String resultMessage = resultCheck.numberCheck(answerNumber, userNumbers);
+            outputView.printResultMessage(resultMessage);
 
-        while (cycle) {
-            int result = inputView.nextStep(outputView, isCorrectAnswer);
+            boolean isCorrectAnswer = outputView.isCorrectAnswer(resultMessage);
+            int gameResult = inputView.selectRestart(isCorrectAnswer);
 
-            if (result == 1) {
-                startGame(true);
-            }
-
-            if (result == 2) {
-                cycle = false;
-            }
+            selectRestartGame(gameResult);
         }
-        //        boolean isRestartGame = inputView.selectRestartGame()
+    }
 
+    private void selectRestartGame(int gameResult) {
+        if (gameResult == RESTART_NUMBER) {
+            startGame(true);
+        }
+
+        if (gameResult == END_NUMBER) {
+            isCycle = false;
+        }
     }
 
 }

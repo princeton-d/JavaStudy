@@ -2,9 +2,7 @@ package org.example.view;
 
 import org.example.util.Validate;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class InputView {
 
@@ -16,7 +14,9 @@ public class InputView {
         return nextInteger();
     }
 
-    public int nextStep(OutputView outputView, boolean isCorrectAnswer) {
+    public int selectRestart(boolean isCorrectAnswer) {
+        int emptyNumber = 0; //크게 의미 없는 숫자
+
         if (isCorrectAnswer) {
             String resultInput = scanner.nextLine();
             Validate.resultInputFormat(resultInput);
@@ -24,9 +24,7 @@ public class InputView {
             return Integer.parseInt(resultInput);
         }
 
-        outputView.printEnterAnswerGuid();
-
-        return nextInteger();
+        return emptyNumber;
     }
 
     private int nextInteger() {
