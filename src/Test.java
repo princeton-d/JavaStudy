@@ -1,13 +1,29 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Test {
-    int num1, num2;
+    public static void main(String[] args) {
+        System.out.println(solution("browoanoommnaon"));
+    }
 
-    static int add(int num1, int num2) { // 메서드 반환타입 앞에 static 이 붙었기 때문에 static 메서드가 됩니다.
-        System.out.println();
-        System.out.println("매개변수로 입력 받은 num1, num2 확인");
-        System.out.println("num1 = " + num1);
-        System.out.println("num2 = " + num2);
+    public static String solution(String str) {
+        List<String> list = Arrays.asList(str.split(""));
+        int count = 0;
 
-        System.out.println("num1 + num2 = " + (num1 + num2));
-        return num1 + num2;
+        while (true) {
+            if (list.get(count).equals(list.get(count + 1))) {
+                list.remove(count + 1);
+                list.remove(count + 2);
+                count--;
+                continue;
+            }
+            count++;
+            if (list.get(count).equals("")) {
+                break;
+            }
+        }
+
+        return String.join("", list);
     }
 }
