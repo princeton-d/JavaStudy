@@ -4,7 +4,7 @@ CREATE TABLE users
     nickname VARCHAR(30),
     email VARCHAR(50),
     password VARCHAR(255),
-    created_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 )
 
