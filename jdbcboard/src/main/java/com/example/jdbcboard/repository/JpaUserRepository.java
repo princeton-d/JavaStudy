@@ -16,7 +16,6 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public Long save(User user) {
-        user.pushCreatedAt();
         em.persist(user);
 
         return user.getUserId();

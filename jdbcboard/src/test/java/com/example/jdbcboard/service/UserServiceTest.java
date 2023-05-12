@@ -1,5 +1,6 @@
 package com.example.jdbcboard.service;
 
+import com.example.jdbcboard.controller.UserForm;
 import com.example.jdbcboard.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;

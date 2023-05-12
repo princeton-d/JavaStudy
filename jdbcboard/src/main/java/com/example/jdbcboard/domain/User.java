@@ -1,5 +1,6 @@
 package com.example.jdbcboard.domain;
 
+import com.example.jdbcboard.controller.UserForm;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -21,9 +22,12 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public void pushCreatedAt() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
+    public User setUserInfo(UserForm form) {
+        this.nickname = form.getNickname();
+        this.email = form.getEmail();
+        this.password = form.getPassword();
+        this.createdAt = LocalDateTime.now();
+
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jdbcboard.service;
 
+import com.example.jdbcboard.controller.UserForm;
 import com.example.jdbcboard.domain.User;
 import com.example.jdbcboard.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class UserService {
     @Transactional
     public Long join(User user) {
         userRepository.save(user);
+
         return user.getUserId();
     }
 
