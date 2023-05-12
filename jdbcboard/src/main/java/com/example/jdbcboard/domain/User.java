@@ -1,12 +1,12 @@
 package com.example.jdbcboard.domain;
 
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity @Getter
+@Entity
+@Getter
 @Table(name = "users")
 public class User {
 

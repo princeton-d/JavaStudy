@@ -2,7 +2,6 @@ package com.example.jdbcboard.repository;
 
 import com.example.jdbcboard.domain.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepository {

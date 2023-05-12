@@ -1,20 +1,18 @@
 package com.example.jdbcboard.repository;
 
 import com.example.jdbcboard.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-@Transactional
+@RequiredArgsConstructor
 public class JpaUserRepository implements UserRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
     @Override
     public Long save(User user) {
