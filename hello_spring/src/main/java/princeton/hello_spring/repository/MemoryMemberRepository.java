@@ -1,5 +1,7 @@
 package princeton.hello_spring.repository;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import princeton.hello_spring.domain.Member;
 import princeton.hello_spring.exception.AlreadyRegisteredException;
@@ -7,6 +9,7 @@ import princeton.hello_spring.exception.AlreadyRegisteredException;
 import java.util.*;
 
 @Repository
+@RequiredArgsConstructor
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
