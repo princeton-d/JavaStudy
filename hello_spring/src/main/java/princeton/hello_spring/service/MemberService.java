@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import princeton.hello_spring.domain.Member;
 import princeton.hello_spring.exception.AlreadyRegisteredException;
-import princeton.hello_spring.repository.MemberRepository;
+import princeton.hello_spring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemoryMemberRepository memberRepository;
 
     public Long join(Member member, String name) throws AlreadyRegisteredException {
         validateDuplicateMember(name);

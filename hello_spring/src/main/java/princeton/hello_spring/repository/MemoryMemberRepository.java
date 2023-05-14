@@ -9,7 +9,6 @@ import princeton.hello_spring.exception.AlreadyRegisteredException;
 import java.util.*;
 
 @Repository
-@RequiredArgsConstructor
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
