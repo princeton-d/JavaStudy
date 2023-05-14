@@ -1,12 +1,15 @@
 package princeton.hello_spring.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import princeton.hello_spring.domain.Member;
+import princeton.hello_spring.repository.JdbcTemplateMemberRepository;
 import princeton.hello_spring.repository.MemoryMemberRepository;
 
 import java.util.List;
@@ -15,16 +18,18 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @SpringBootTest
+@Transactional
 class MemberServiceTest {
 
     @Autowired private MemberService memberService;
-    @Autowired private MemoryMemberRepository memberRepository;
+//    @Autowired private MemoryMemberRepository memberRepository;
 
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
-    }
+//    @AfterEach
+//    public void afterEach() {
+//        memberRepository.clearStore();
+//    }
 
     @DisplayName("회원가입")
     @Test
@@ -34,10 +39,11 @@ class MemberServiceTest {
         String memberName = "member1";
 
         //when
-        Long joinId = memberService.join(member, memberName);
+        Long savedId = memberService.join(member, memberName);
+        Member findMember = memberService.findOndMember(savedId).get();
 
         //then
-        assertThat(joinId).isEqualTo(1);
+        assertThat(findMember.getName()).isEqualTo(memberName);
     }
 
     @DisplayName("중복 회원 예외")
@@ -63,6 +69,8 @@ class MemberServiceTest {
     @Test
     public void findAllMembers() throws Exception {
         //given
+        int defaultSize = memberService.findAllMembers().size();
+
         Member member1 = new Member();
         String memberName1 = "member1";
         memberService.join(member1, memberName1);
@@ -74,7 +82,7 @@ class MemberServiceTest {
         List<Member> members = memberService.findAllMembers();
 
         //then
-        assertThat(members.size()).isEqualTo(2);
+        assertThat(members.size()).isEqualTo(defaultSize + 2);
     }
 
     @DisplayName("단건 조회")
@@ -83,14 +91,15 @@ class MemberServiceTest {
         //given
         Member member = new Member();
         String memberName = "member1";
-        memberService.join(member, memberName);
+        Long savedId = memberService.join(member, memberName);
+        log.info("savedId={}", savedId);
 
         //when
-        Optional<Member> findMember = memberService.findOndMember(member.getId());
+        Member findMember = memberService.findOndMember(savedId).get();
         Optional<Member> emptyMember = memberService.findOndMember(9999999L);
 
         //then
-        assertThat(findMember.get()).isEqualTo(member);
+        assertThat(findMember.getName()).isEqualTo(memberName);
         assertThat(emptyMember).isEqualTo(Optional.empty());
     }
 }

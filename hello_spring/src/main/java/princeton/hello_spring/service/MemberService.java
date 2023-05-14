@@ -19,8 +19,8 @@ public class MemberService {
 
     public Long join(Member member, String name) throws AlreadyRegisteredException {
         validateDuplicateMember(name);
-        memberRepository.save(member, name);
-        return member.getId();
+        Member savedMember = memberRepository.save(member, name);
+        return savedMember.getId();
     }
 
     private void validateDuplicateMember(String name) {
