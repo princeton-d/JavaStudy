@@ -30,11 +30,12 @@ public class MemberController {
     }
 
     @PostMapping("/members/new")
-    public String createMember(@ModelAttribute MemberForm memberForm) throws AlreadyRegisteredException {
-        Member member = new Member();
-        String name = memberForm.getName();
+    public String createMember(@ModelAttribute MemberForm memberForm) {
+        Member member = Member.builder()
+                .name(memberForm.getName())
+                .build();
 
-        memberService.join(member, name);
+        memberService.join(member, memberForm.getName());
 
         return "redirect:/members";
     }

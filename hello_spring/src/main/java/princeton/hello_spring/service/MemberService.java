@@ -2,24 +2,29 @@ package princeton.hello_spring.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import princeton.hello_spring.domain.Member;
 import princeton.hello_spring.exception.AlreadyRegisteredException;
-import princeton.hello_spring.repository.JdbcTemplateMemberRepository;
-import princeton.hello_spring.repository.MemoryMemberRepository;
+//import princeton.hello_spring.repository.JdbcTemplateMemberRepository;
+import princeton.hello_spring.repository.JpaMemberRepository;
+//import princeton.hello_spring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
 
     //    private final MemoryMemberRepository memberRepository;
-    private final JdbcTemplateMemberRepository memberRepository;
+//    private final JdbcTemplateMemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
 
-    public Long join(Member member, String name) throws AlreadyRegisteredException {
+    @Transactional
+    public Long join(Member member, String name) {
         validateDuplicateMember(name);
-        Member savedMember = memberRepository.save(member, name);
+        Member savedMember = memberRepository.save(member);
         return savedMember.getId();
     }
 

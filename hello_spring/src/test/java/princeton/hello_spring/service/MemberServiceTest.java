@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import princeton.hello_spring.domain.Member;
-import princeton.hello_spring.repository.JdbcTemplateMemberRepository;
-import princeton.hello_spring.repository.MemoryMemberRepository;
+//import princeton.hello_spring.repository.JdbcTemplateMemberRepository;
+//import princeton.hello_spring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +35,16 @@ class MemberServiceTest {
     @Test
     public void join() throws Exception {
         //given
-        Member member = new Member();
         String memberName = "member1";
+        Member member = Member.builder()
+                .name(memberName)
+                .build();
 
         //when
         Long savedId = memberService.join(member, memberName);
         Member findMember = memberService.findOndMember(savedId).get();
+        log.info("memberId={}", member.getId());
+        log.info("findMemberId={}", findMember.getId());
 
         //then
         assertThat(findMember.getName()).isEqualTo(memberName);
