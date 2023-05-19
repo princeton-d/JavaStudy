@@ -1,4 +1,4 @@
-package princeton.toy.repository;
+package princeton.toy.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -10,7 +10,6 @@ import princeton.toy.domain.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 @SpringBootTest
 @Transactional
-class UserRepositoryTest {
+class UserServiceTest {
 
-    @Autowired UserRepository userRepository;
+    @Autowired private UserService userService;
 
     @Test
-    public void 유저_정보_저장() throws Exception {
+    public void 회원가입() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -31,26 +30,35 @@ class UserRepositoryTest {
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
-        log.info("id={}", user.getId());
-        log.info("username={}", user.getUsername());
-        log.info("===========================");
 
         //when
-        Long savedId = userRepository.save(user);
-        log.info("savedId={}", savedId);
-        User findUser = userRepository.find(savedId);
-        log.info("findUser.getId={}", findUser.getId());
-        log.info("user.getId={}", user.getId());
-        log.info("findUser.getUsername={}", findUser.getUsername());
-        log.info("user.getUsername={}", user.getUsername());
+        Long joinId = userService.join(user);
 
         //then
+        assertThat(joinId).isEqualTo(user.getId());
+    }
+
+    @Test
+    public void id_회원_단건_조회_성공() throws Exception {
+        //given
+        User user = User.builder()
+                .username("memberA")
+                .userLoginId("princeton")
+                .userPassword("password")
+                .createdAt(LocalDateTime.now())
+                .build();
+        Long joinId = userService.join(user);
+
+        //when
+        User findUser = userService.findOneUser(joinId);
+
+        //then
+        assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
         assertThat(findUser.getId()).isEqualTo(user.getId());
-        assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
     }
 
     @Test
-    public void 값_있는_id_단건_유저_조회() throws Exception {
+    public void id_회원_단건_조회_빈값() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -58,35 +66,17 @@ class UserRepositoryTest {
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
-        Long savedId = userRepository.save(user);
+        Long joinId = userService.join(user);
 
         //when
-        User findUser = userRepository.findById(savedId);
-
-        //then
-        assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
-    }
-
-    @Test
-    public void 값_없는_id_단건_유저_조회() throws Exception {
-        //given
-        User user = User.builder()
-                .username("memberA")
-                .userLoginId("princeton")
-                .userPassword("password")
-                .createdAt(LocalDateTime.now())
-                .build();
-        Long savedId = userRepository.save(user);
-
-        //when
-        User findUser = userRepository.findById(21763L);
+        User findUser = userService.findOneUser(2137856L);
 
         //then
         assertThat(findUser).isNull();
     }
 
     @Test
-    public void 값_있는_유저_이름_단건_조회() throws Exception {
+    public void 유저명_회원_단건_조회() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -94,20 +84,18 @@ class UserRepositoryTest {
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
-        String username = user.getUsername();
-        Long savedId = userRepository.save(user);
+        Long joinId = userService.join(user);
 
         //when
-        List<User> findUsers = userRepository.findByName(username);
-        User findUser = findUsers.get(0);
+        User findUser = userService.findOneUserByName(user.getUsername()).get(0);
 
         //then
-        assertThat(findUser.getId()).isEqualTo(savedId);
-        assertThat(findUser.getUsername()).isEqualTo(username);
+        assertThat(findUser.getId()).isEqualTo(joinId);
+        assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
     }
 
     @Test
-    public void 값_없는_유저_이름_단건_조회() throws Exception {
+    public void 유저명_회원_단건_조회_빈값() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -115,17 +103,17 @@ class UserRepositoryTest {
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
-        userRepository.save(user);
+        Long joinId = userService.join(user);
 
         //when
-        List<User> findUser = userRepository.findByName("뉴진스의 하입보이요");
+        List<User> findUsers = userService.findOneUserByName("세상에 존재할 수 없고 존재해서도 안되는 절대 중복되지 않는 환상적인 이름");
 
         //then
-        assertThat(findUser).isEmpty();
+        assertThat(findUsers).isEmpty();
     }
 
     @Test
-    public void 전체_유저_조회() throws Exception {
+    public void 회원_전체_조회() throws Exception {
         //given
         User user1 = User.builder()
                 .username("memberA")
@@ -145,14 +133,15 @@ class UserRepositoryTest {
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+        userService.join(user1);
+        userService.join(user2);
+        userService.join(user3);
 
         //when
-        List<User> findUsers = userRepository.findAll();
+        List<User> findUsers = userService.findUsers();
 
         //then
         assertThat(findUsers.size()).isEqualTo(3);
     }
+
 }
