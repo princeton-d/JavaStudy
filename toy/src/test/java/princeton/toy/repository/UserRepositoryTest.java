@@ -2,6 +2,7 @@ package princeton.toy.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,8 +23,9 @@ class UserRepositoryTest {
 
     @Autowired UserRepository userRepository;
 
+    @DisplayName("유저 정보 저장")
     @Test
-    public void 유저_정보_저장() throws Exception {
+    public void save() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -49,8 +51,9 @@ class UserRepositoryTest {
         assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
     }
 
+    @DisplayName("id로 유저 조회하기(성공)")
     @Test
-    public void 값_있는_id_단건_유저_조회() throws Exception {
+    public void findById() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -67,8 +70,9 @@ class UserRepositoryTest {
         assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
     }
 
+    @DisplayName("id로 유저 조회하기(없는 id 입력)")
     @Test
-    public void 값_없는_id_단건_유저_조회() throws Exception {
+    public void findByEmptyId() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -85,8 +89,9 @@ class UserRepositoryTest {
         assertThat(findUser).isNull();
     }
 
+    @DisplayName("유저 이름으로 유저 조회하기(성공)")
     @Test
-    public void 값_있는_유저_이름_단건_조회() throws Exception {
+    public void findByName() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -106,8 +111,9 @@ class UserRepositoryTest {
         assertThat(findUser.getUsername()).isEqualTo(username);
     }
 
+    @DisplayName("유저 이름으로 유저 조회하기(없는 이름으로 조회 진행)")
     @Test
-    public void 값_없는_유저_이름_단건_조회() throws Exception {
+    public void findByEmptyName() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -124,24 +130,46 @@ class UserRepositoryTest {
         assertThat(findUser).isEmpty();
     }
 
+    @DisplayName("유저 로그인아이디로 유저 정보 조회하기")
     @Test
-    public void 전체_유저_조회() throws Exception {
+    public void findByUserId() throws Exception {
         //given
-        User user1 = User.builder()
+        User user = User.builder()
                 .username("memberA")
                 .userLoginId("princeton")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
+        Long savedId = userRepository.save(user);
+        String userLoginId = user.getUserLoginId();
+
+        //when
+        User findUser = userRepository.findByUserLoginId(userLoginId).get(0);
+
+        //then
+        assertThat(findUser.getUserLoginId()).isEqualTo(userLoginId);
+        assertThat(findUser.getId()).isEqualTo(savedId);
+    }
+
+    @DisplayName("전체 조회")
+    @Test
+    public void findAll() throws Exception {
+        //given
+        User user1 = User.builder()
+                .username("memberA")
+                .userLoginId("princetonA")
+                .userPassword("password")
+                .createdAt(LocalDateTime.now())
+                .build();
         User user2 = User.builder()
                 .username("memberB")
-                .userLoginId("princeton")
+                .userLoginId("princetonB")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
         User user3 = User.builder()
                 .username("memberC")
-                .userLoginId("princeton")
+                .userLoginId("princetonC")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -155,4 +183,17 @@ class UserRepositoryTest {
         //then
         assertThat(findUsers.size()).isEqualTo(3);
     }
+
+    @DisplayName("DB가 비어있는 상태에서 전체 조회")
+    @Test
+    public void findEmptyAll() throws Exception {
+        //given
+
+        //when
+        List<User> findUsers = userRepository.findAll();
+
+        //then
+        assertThat(findUsers).isEmpty();
+    }
+
 }

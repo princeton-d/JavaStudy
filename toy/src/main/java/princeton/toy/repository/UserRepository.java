@@ -7,6 +7,7 @@ import princeton.toy.domain.User;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -36,6 +37,12 @@ public class UserRepository {
 
     public List<User> findAll() {
         return em.createQuery("select u from User u", User.class)
+                .getResultList();
+    }
+
+    public List<User> findByUserLoginId(String userLoginId) {
+        return em.createQuery("select u from User u where u.userLoginId = :userLoginId", User.class)
+                .setParameter("userLoginId", userLoginId)
                 .getResultList();
     }
 }

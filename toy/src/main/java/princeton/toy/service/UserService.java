@@ -16,7 +16,20 @@ public class UserService {
     private final UserRepository userRepository;
 
     public Long join(User user) {
+
+        validateDuplicateLoginId(user);
         return userRepository.save(user);
+    }
+
+    private void validateDuplicateLoginId(User user) {
+        List<User> findMember = userRepository.findByUserLoginId(user.getUserLoginId());
+        if (isNotEmpty(findMember)) {
+            throw new IllegalArgumentException("이미 존재하는 아이디입니다.");
+        }
+    }
+
+    private boolean isNotEmpty(List<User> findMember) {
+        return !findMember.isEmpty();
     }
 
     public User findOneUser(Long userId) {

@@ -2,6 +2,7 @@ package princeton.toy.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,8 +22,9 @@ class UserServiceTest {
 
     @Autowired private UserService userService;
 
+    @DisplayName("회원가입")
     @Test
-    public void 회원가입() throws Exception {
+    public void join() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -38,8 +40,35 @@ class UserServiceTest {
         assertThat(joinId).isEqualTo(user.getId());
     }
 
+    @DisplayName("동일한 userId로 회원가입 시도 테스트")
     @Test
-    public void id_회원_단건_조회_성공() throws Exception {
+    public void duplicateUserIdTest() throws Exception {
+        //given
+        User user1 = User.builder()
+                .username("memberA")
+                .userLoginId("princeton")
+                .userPassword("password1")
+                .createdAt(LocalDateTime.now())
+                .build();
+        User user2 = User.builder()
+                .username("memberB")
+                .userLoginId("princeton")
+                .userPassword("password2")
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        userService.join(user1);
+
+        //when, then
+        assertThatThrownBy(() -> {
+            userService.join(user2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이미 존재하는 아이디입니다.");
+    }
+
+    @DisplayName("id로 유저 단건 조회")
+    @Test
+    public void findOneUser() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -57,26 +86,9 @@ class UserServiceTest {
         assertThat(findUser.getId()).isEqualTo(user.getId());
     }
 
+    @DisplayName("유저명으로 회원 단건 조회")
     @Test
-    public void id_회원_단건_조회_빈값() throws Exception {
-        //given
-        User user = User.builder()
-                .username("memberA")
-                .userLoginId("princeton")
-                .userPassword("password")
-                .createdAt(LocalDateTime.now())
-                .build();
-        Long joinId = userService.join(user);
-
-        //when
-        User findUser = userService.findOneUser(2137856L);
-
-        //then
-        assertThat(findUser).isNull();
-    }
-
-    @Test
-    public void 유저명_회원_단건_조회() throws Exception {
+    public void findOneUserByName() throws Exception {
         //given
         User user = User.builder()
                 .username("memberA")
@@ -94,42 +106,25 @@ class UserServiceTest {
         assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
     }
 
+    @DisplayName("전체 회원 조회")
     @Test
-    public void 유저명_회원_단건_조회_빈값() throws Exception {
-        //given
-        User user = User.builder()
-                .username("memberA")
-                .userLoginId("princeton")
-                .userPassword("password")
-                .createdAt(LocalDateTime.now())
-                .build();
-        Long joinId = userService.join(user);
-
-        //when
-        List<User> findUsers = userService.findOneUserByName("세상에 존재할 수 없고 존재해서도 안되는 절대 중복되지 않는 환상적인 이름");
-
-        //then
-        assertThat(findUsers).isEmpty();
-    }
-
-    @Test
-    public void 회원_전체_조회() throws Exception {
+    public void findUsers() throws Exception {
         //given
         User user1 = User.builder()
                 .username("memberA")
-                .userLoginId("princeton")
+                .userLoginId("princetonA")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
         User user2 = User.builder()
                 .username("memberB")
-                .userLoginId("princeton")
+                .userLoginId("princetonB")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
         User user3 = User.builder()
                 .username("memberC")
-                .userLoginId("princeton")
+                .userLoginId("princetonC")
                 .userPassword("password")
                 .createdAt(LocalDateTime.now())
                 .build();
