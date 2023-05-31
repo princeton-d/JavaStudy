@@ -22,12 +22,7 @@ class MemberRepositoryTest {
     @Test
     public void save() throws Exception {
         //given
-        String loginId = "princeton";
-        String email = "princeton@test.com";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String password = "password";
-
-        Member member = new Member(loginId, email, createdAt, password);
+        Member member = new Member("princeton", "princeton@test.com", LocalDateTime.now(), "password");
 
         //when
         Long savedId = memberRepository.save(member);
@@ -41,18 +36,11 @@ class MemberRepositoryTest {
     public void duplicateLoginIdSave() throws DuplicateLoginIdException {
         //given
         String duplicateLoginId = "princeton";
-        String email = "princeton@test.com";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String password = "password";
 
-        Member member = new Member(duplicateLoginId, email, createdAt, password);
+        Member member = new Member(duplicateLoginId, "princeton@test.com", LocalDateTime.now(), "password");
         memberRepository.save(member);
 
-        String anotherEmail = "another@test.com";
-        LocalDateTime anotherCreatedAt = LocalDateTime.now();
-        String anotherPassword = "another";
-
-        Member duplicateLoginIdMember = new Member(duplicateLoginId, anotherEmail, anotherCreatedAt, anotherPassword);
+        Member duplicateLoginIdMember = new Member(duplicateLoginId, "another@test.com", LocalDateTime.now(), "another");
 
         //when, then
         assertThatThrownBy(() -> memberRepository.save(duplicateLoginIdMember))
@@ -63,12 +51,7 @@ class MemberRepositoryTest {
     @Test
     public void findById() throws Exception {
         //given
-        String loginId = "princeton";
-        String email = "princeton@test.com";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String password = "password";
-
-        Member member = new Member(loginId, email, createdAt, password);
+        Member member = new Member("princeton", "princeton@test.com", LocalDateTime.now(), "password");
         memberRepository.save(member);
 
         //when
@@ -82,11 +65,8 @@ class MemberRepositoryTest {
     public void findByLoginId() throws Exception {
         //given
         String loginId = "princeton";
-        String email = "princeton@test.com";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String password = "password";
 
-        Member member = new Member(loginId, email, createdAt, password);
+        Member member = new Member(loginId, "princeton@test.com", LocalDateTime.now(), "password");
         memberRepository.save(member);
 
         //when
@@ -99,12 +79,7 @@ class MemberRepositoryTest {
     @Test
     public void findByNotExistLoginId() throws Exception {
         //given
-        String loginId = "princeton";
-        String email = "princeton@test.com";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String password = "password";
-
-        Member member = new Member(loginId, email, createdAt, password);
+        Member member = new Member("princeton", "princeton@test.com", LocalDateTime.now(), "password");
         memberRepository.save(member);
 
         //when
