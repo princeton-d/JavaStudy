@@ -3,7 +3,7 @@ package princeton.toy.member.domain.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import princeton.toy.article.domain.domain.Article;
+import princeton.toy.article.domain.entity.Article;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class Member {
     private LocalDateTime createdAt;
     private String password;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "author")
     private List<Article> articles = new ArrayList<>();
 
     public Member(String loginId, String email, LocalDateTime createdAt, String password) {

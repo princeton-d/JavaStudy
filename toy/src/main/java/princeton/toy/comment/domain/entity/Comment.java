@@ -1,9 +1,9 @@
-package princeton.toy.comment.domain.domain;
+package princeton.toy.comment.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import princeton.toy.article.domain.domain.Article;
+import princeton.toy.article.domain.entity.Article;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,13 +18,13 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
-    private Article article;
+    private Article author;
 
     private String content;
     private LocalDateTime createdAt;
 
     public Comment(Article article, String content, LocalDateTime createdAt) {
-        this.article = article;
+        this.author = article;
         this.content = content;
         this.createdAt = createdAt;
     }
