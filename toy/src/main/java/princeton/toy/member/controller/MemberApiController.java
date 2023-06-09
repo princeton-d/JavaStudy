@@ -19,11 +19,7 @@ public class MemberApiController {
 
     @GetMapping("/members")
     public MemberListDto members() {
-        List<Member> findMembers = memberService.findMembers();
-
-        return new MemberListDto(findMembers.stream()
-                .map(MemberDto::new)
-                .collect(Collectors.toList()));
+        return memberService.findMembersDto();
     }
 
 }

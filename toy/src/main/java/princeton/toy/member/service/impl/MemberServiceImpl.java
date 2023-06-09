@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import princeton.toy.member.domain.entity.Member;
+import princeton.toy.member.dto.MemberDto;
+import princeton.toy.member.dto.MemberListDto;
 import princeton.toy.member.repository.MemberRepository;
 import princeton.toy.member.service.MemberService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -38,5 +42,16 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> findMembers() {
         List<Member> findMembers = memberRepository.findAll();
         return findMembers;
+    }
+
+    @Override
+    public MemberListDto findMembersDto() {
+        List<Member> findMembers = memberRepository.findAll();
+
+        List<MemberDto> membersDto = findMembers.stream()
+                .map(MemberDto::new)
+                .collect(Collectors.toList());
+
+        return new MemberListDto(membersDto);
     }
 }

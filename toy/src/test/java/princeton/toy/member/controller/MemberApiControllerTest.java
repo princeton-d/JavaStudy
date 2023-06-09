@@ -8,9 +8,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import princeton.toy.member.domain.entity.Member;
+import princeton.toy.member.dto.MemberDto;
+import princeton.toy.member.dto.MemberListDto;
 import princeton.toy.member.service.MemberService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
@@ -29,17 +34,28 @@ class MemberApiControllerTest {
 
     @Test
     public void getMemberList() throws Exception {
-
         Member member1 = new Member("loginId1", "email1", LocalDateTime.now(), "password1");
         Member member2 = new Member("loginId2", "email2", LocalDateTime.now(), "password2");
-        when(memberService.join(member1)).thenReturn(1L);
-        when(memberService.join(member2)).thenReturn(2L);
+        List<Member> memberList = new ArrayList<>();
+
+        memberList.add(member1);
+        memberList.add(member2);
+
+        List<MemberDto> memberDtoList = memberList.stream()
+                .map(MemberDto::new)
+                .collect(Collectors.toList());
+
+        when(memberService.findMembersDto()).thenReturn(new MemberListDto(memberDtoList));
 
         mockMvc.perform(get("/members"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.members", hasSize(2)));
-
+                .andExpect(jsonPath("$.members", hasSize(2)))
+                .andExpect(jsonPath("$.members[0].loginId").exists())
+                .andExpect(jsonPath("$.members[0].email").exists())
+                .andExpect(jsonPath("$.members[0].createdAt").exists())
+                .andExpect(jsonPath("$.members[1].loginId").value("loginId2"))
+                .andExpect(jsonPath("$.members[1].email").value("email2"));
     }
 
 }
