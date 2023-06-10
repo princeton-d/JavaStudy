@@ -7,7 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import princeton.toy.article.domain.entity.Article;
 import princeton.toy.member.domain.entity.Member;
+import princeton.toy.member.dto.MemberAndArticleDto;
 import princeton.toy.member.dto.MemberDto;
 import princeton.toy.member.dto.MemberListDto;
 import princeton.toy.member.service.MemberService;
@@ -56,6 +58,34 @@ class MemberApiControllerTest {
                 .andExpect(jsonPath("$.members[0].createdAt").exists())
                 .andExpect(jsonPath("$.members[1].loginId").value("loginId2"))
                 .andExpect(jsonPath("$.members[1].email").value("email2"));
+    }
+
+    @Test
+    public void getMember() throws Exception {
+        //given
+        Member member = new Member("loginId", "email", LocalDateTime.now(), "password");
+        Article article1 = new Article(member, "title1", "content1", LocalDateTime.now());
+        Article article2 = new Article(member, "title2", "content2", LocalDateTime.now());
+
+        member.addArticle(article1);
+        member.addArticle(article2);
+
+        //when
+        when(memberService.findMemberByLoginId("loginId")).thenReturn(new MemberAndArticleDto(member));
+
+        //then
+        mockMvc.perform(get("/member/{id}"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.member[0].loginId").exists())
+                .andExpect(jsonPath("$.member[0].email").exists())
+                .andExpect(jsonPath("$.member[0].createdAt").exists())
+                .andExpect(jsonPath("$.member[0].articles").exists())
+                .andExpect(jsonPath("$.member[0].articles", hasSize(2)))
+                .andExpect(jsonPath("$.member[0].articles[0].articleId").exists())
+                .andExpect(jsonPath("$.member[0].articles[0].title").exists())
+                .andExpect(jsonPath("$.member[0].articles[0].createdAt").exists())
+                .andExpect(jsonPath("$.member[0].articles[1].title").value("title2"));
     }
 
 }

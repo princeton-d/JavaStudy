@@ -31,4 +31,8 @@ public class Member {
         this.createdAt = createdAt;
         this.password = password;
     }
+
+    public void addArticle(Article article) {
+        this.articles.add(article);
+    }
 }
