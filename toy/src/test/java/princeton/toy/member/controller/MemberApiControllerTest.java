@@ -70,8 +70,10 @@ class MemberApiControllerTest {
         member.addArticle(article1);
         member.addArticle(article2);
 
+        List<Article> articles = member.getArticles();
+
         //when
-        when(memberService.findMemberByLoginId("loginId")).thenReturn(new MemberAndArticleDto(member));
+        when(memberService.findMemberByLoginId("loginId")).thenReturn(new MemberAndArticleDto(member, articles));
 
         //then
         mockMvc.perform(get("/member/{id}"))
