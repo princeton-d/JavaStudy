@@ -2,6 +2,7 @@ package princeton.princeton;
 
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import princeton.princeton.member.entity.Member;
 import princeton.princeton.member.entity.QMember;
+import princeton.princeton.member.memberDto.MemberDto;
 import princeton.princeton.team.entity.QTeam;
 import princeton.princeton.team.entity.Team;
 
@@ -247,6 +249,72 @@ public class QuerydslBasicTest {
         for (Tuple tuple : result) {
             System.out.println("tuple = " + tuple);
         }
+    }
+
+    @Test
+    public void findDtoByJpql() throws Exception {
+        //given
+        List<MemberDto> result = em.createQuery("select new princeton.princeton.member.memberDto.MemberDto(m.username, m.age)" +
+                        " from Member m", MemberDto.class)
+                .getResultList();
+
+        //when
+        for (MemberDto memberDto : result) {
+            System.out.println("memberDto = " + memberDto);
+        }
+
+        //then
+    }
+    
+    @Test
+    public void findByQuerydslSetter() throws Exception {
+        //given
+        List<MemberDto> result = queryFactory
+                .select(Projections.bean(MemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+        //when
+        for (MemberDto memberDto : result) {
+            System.out.println("memberDto = " + memberDto);
+        }
+        
+        //then
+    }
+
+    @Test
+    public void findByQuerydslField() throws Exception {
+        //given
+        List<MemberDto> result = queryFactory
+                .select(Projections.fields(MemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+        //when
+        for (MemberDto memberDto : result) {
+            System.out.println("memberDto = " + memberDto);
+        }
+
+        //then
+    }
+
+    @Test
+    public void findByQuerydslConstructor() throws Exception {
+        //given
+        List<MemberDto> result = queryFactory
+                .select(Projections.constructor(MemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+        //when
+        for (MemberDto memberDto : result) {
+            System.out.println("memberDto = " + memberDto);
+        }
+
+        //then
     }
 
 }

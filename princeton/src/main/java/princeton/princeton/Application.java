@@ -11,3 +11,10 @@ public class Application {
     }
 
 }
+
+
+//    int answer = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//        answer += arr[i];
+//        }
+//        return (double)answer / arr.length;
