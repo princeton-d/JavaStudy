@@ -5,6 +5,7 @@ import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -300,6 +301,7 @@ public class QuerydslBasicTest {
         //then
     }
 
+    @DisplayName("생성자를 통한 dtomapping")
     @Test
     public void findByQuerydslConstructor() throws Exception {
         //given
