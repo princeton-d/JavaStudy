@@ -13,8 +13,7 @@ public class EventValidator {
     public void validate(RequestEventDto requestEventDto, Errors errors) {
 
         if (isPriceValidateFailed(requestEventDto)) {
-            errors.rejectValue("basePrice", "wrongValue", "basePrice is wrong.");
-            errors.rejectValue("maxPrice", "wrongValue", "maxPrice is wrong.");
+            errors.reject("wrongPrice", "Values fo prices are wrong");
         }
 
         if (isEndEventDateTimeValidateFailed(requestEventDto)) {
