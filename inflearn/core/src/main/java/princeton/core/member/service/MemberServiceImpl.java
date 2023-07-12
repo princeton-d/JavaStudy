@@ -1,19 +1,15 @@
 package princeton.core.member.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import princeton.core.member.domain.entity.Member;
 import princeton.core.member.repository.MemberRepository;
 
 @Component
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-
-    @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     @Override
     public void join(Member member) {
