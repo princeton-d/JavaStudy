@@ -1,9 +1,11 @@
 package princeton.core.discount;
 
+import org.springframework.stereotype.Component;
 import princeton.core.member.domain.entity.Member;
 
 import static princeton.core.member.domain.role.Grade.*;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10;
