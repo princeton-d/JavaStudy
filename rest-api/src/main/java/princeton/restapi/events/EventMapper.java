@@ -14,6 +14,4 @@ public interface EventMapper {
 
     Event toEventEntity(RequestEventDto requestEventDto);
 
-    RequestEventDto toDto(Event);
-
 }

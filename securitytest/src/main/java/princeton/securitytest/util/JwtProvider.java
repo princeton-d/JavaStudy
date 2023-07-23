@@ -2,6 +2,7 @@ package princeton.securitytest.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import princeton.securitytest.member.domain.role.Role;
@@ -17,6 +18,7 @@ public class JwtProvider {
 
     private final Key secretKey;
     private final long TOKEN_EXPIRES_IN;
+    private final String HEADER_NAME = "Authorization";
     private final String AUTHORIZATION_KEY = "auth";
 
     public JwtProvider(
@@ -31,7 +33,7 @@ public class JwtProvider {
         final Date now = new Date();
         final Date validity = new Date(now.getTime() + TOKEN_EXPIRES_IN);
 
-        return Jwts.builder()
+        return TOKEN_TYPE + Jwts.builder()
                 .setSubject(id.toString())
                 .setIssuedAt(now)
                 .setExpiration(validity)
@@ -41,7 +43,6 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String token) {
-
         try {
             return getClaimsJws(token)
                     .getBody()
@@ -75,7 +76,7 @@ public class JwtProvider {
                 .parseClaimsJws(token);
     }
 
-    private String extractToken(String token) {
+    public String extractToken(String token) {
         if (isInvalidTokenType(token)) {
             throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
         }
@@ -85,6 +86,15 @@ public class JwtProvider {
 
     private boolean isInvalidTokenType(String token) {
         return token == null || !token.startsWith(TOKEN_TYPE);
+    }
+
+    public Claims getClaims(String token) {
+        return getClaimsJws(token)
+                .getBody();
+    }
+
+    public String getToken(HttpServletRequest request) {
+        return request.getHeader(HEADER_NAME);
     }
 
 }
