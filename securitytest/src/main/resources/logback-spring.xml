@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds"> <!-- 30초마다 스캔 후 설정값을 비교함 -->
+    <property name="moduleId" value="around hub_spring_boot"/>
+    <property name="type" value="around_hub"/>
+    <property name="logback" value="logback"/>
+    <property name="logdir" value="/Users/gimdonghyeon/Desktop/web/log/testlog"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{20} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="testlogfile" class="ch.qos.logback.core.FileAppender">
+        <file>/Users/gimdonghyeon/Desktop/web/log/testlog/testlog.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{20} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="console"/> <!-- appender 의 이름과 매칭이 되어야함 -->
+        <appender-ref ref="testlogfile"/>
+    </root>
+</configuration>
