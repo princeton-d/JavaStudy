@@ -1,4 +1,7 @@
 package princeton.securitytest.member.repository;
 
-public interface MemberRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import princeton.securitytest.member.domain.entity.Member;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
 }
