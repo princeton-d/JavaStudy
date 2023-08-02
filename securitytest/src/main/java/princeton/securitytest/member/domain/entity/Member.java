@@ -21,9 +21,9 @@ public class Member {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String testValue;
+    private Long testValue;
 
-    public void updateTestValue(String value) {
+    public void updateTestValue(Long value) {
         this.testValue = value;
     }
 
