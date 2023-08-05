@@ -1,12 +1,10 @@
-package princeton.securitytest.member.domain.entity;
+package com.princeton.userservice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
@@ -21,10 +19,9 @@ public class Member {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String testValue;
-
-    public void updateTestValue(String value) {
-        this.testValue = value;
-    }
+    private String email;
+    private String name;
+    private String password;
+    private String userId;
 
 }

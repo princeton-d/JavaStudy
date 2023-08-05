@@ -2,7 +2,6 @@ package princeton.securitytest.member.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import princeton.securitytest.member.domain.entity.Member;
 import princeton.securitytest.member.repository.MemberRepository;
 
@@ -20,10 +19,10 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    @Transactional
-    public Member updateMember(Long id, Long value) {
+    public Member updateMember(Long id, String value) throws InterruptedException {
         Member findMember = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("wrong member id"));
-        findMember.updateTestValue(findMember.getTestValue() + value);
+        Thread.sleep(1000);
+        findMember.updateTestValue(value);
 
         return findMember;
     }
