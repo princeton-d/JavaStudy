@@ -11,7 +11,7 @@ public interface MemberMapper {
 
     MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);
 
-    Member requestMemberSignupDtoToEntity(RequestMemberSignupDto requestMemberSignupDto, String userId);
+    Member requestMemberSignupDtoToEntity(RequestMemberSignupDto requestMemberSignupDto, String memberUid);
 
     ResponseMemberSignupResultDto entityToResponseMemberSignupResultDto(Member member);
 

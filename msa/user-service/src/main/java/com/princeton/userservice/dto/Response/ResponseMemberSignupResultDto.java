@@ -12,6 +12,6 @@ public class ResponseMemberSignupResultDto {
 
     private String email;
     private String name;
-    private String userId;
+    private String memberUid;
 
 }

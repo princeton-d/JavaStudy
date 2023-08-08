@@ -5,6 +5,9 @@ server:
       force: true
 
 spring:
+  sql:
+    init:
+      mode: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
@@ -14,8 +17,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true #ddl-auto 실행 후 data.sql 실행
   application:
-    name: user-service
+    name: catalog-service
 
 logging:
   level:
