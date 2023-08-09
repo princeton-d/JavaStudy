@@ -5,6 +5,7 @@ import com.princeton.userservice.dto.request.RequestMemberSignupDto;
 import com.princeton.userservice.global.response.ResponseDataDto;
 import com.princeton.userservice.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,14 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 public class MemberController {
 
+    private final Environment env;
+
     private final MemberService memberService;
+
+    @GetMapping("/test")
+    public String test() {
+        return env.getProperty("token.expiration_time");
+    }
 
     @PostMapping("/members")
     public ResponseEntity<ResponseDataDto<ResponseMemberSignupResultDto>> createMember(@RequestBody RequestMemberSignupDto requestMemberSignupDto) {
