@@ -22,6 +22,7 @@ public class MemberController {
 
     @GetMapping("/test")
     public String test() {
+        System.out.println(env.getProperty("token.expiration_time"));
         return env.getProperty("token.expiration_time");
     }
 

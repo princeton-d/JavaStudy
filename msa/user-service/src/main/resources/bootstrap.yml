@@ -4,4 +4,4 @@ spring:
       uri: http://localhost:8888
       name: ecommerce
   config:
-    import: "optional:configserver:"
+    import: "optional:config-service:"
