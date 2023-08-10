@@ -4,8 +4,23 @@ server:
 spring:
   application:
     name: config-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: file:///Users/gimdonghyeon/Desktop/web/JavaStudy/msa/configs
+        native:
+          search-locations: file:///Users/princeton/Desktop/web/JavaStudy/msa/configs
+#        git:
+#          uri: file:///Users/princeton/Desktop/web/JavaStudy/msa/configs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, busrefresh
