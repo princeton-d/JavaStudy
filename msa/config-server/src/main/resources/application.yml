@@ -16,11 +16,12 @@ spring:
       server:
         native:
           search-locations: file:///Users/princeton/Desktop/web/JavaStudy/msa/configs
-#        git:
-#          uri: file:///Users/princeton/Desktop/web/JavaStudy/msa/configs
 
 management:
   endpoints:
     web:
       exposure:
         include: refresh, health, busrefresh
+
+encrypt:
+  key: abcdefghijklmnopqrstuvwxyz0123456789

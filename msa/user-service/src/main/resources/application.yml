@@ -9,9 +9,6 @@ spring:
   application:
     name: user-service
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -29,6 +26,7 @@ spring:
   cloud:
     config:
       name: ecommerce
+      uri: http://localhost:8888
 
   config:
     import: "optional:configserver:http://localhost:8888"
@@ -54,3 +52,6 @@ management:
     web:
       exposure:
         include: "*"
+
+catalog-service:
+  url: http://localhost:8000/catalog-service/catalogs/%s
